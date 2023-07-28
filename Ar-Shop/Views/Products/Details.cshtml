@@ -1,0 +1,57 @@
+﻿@model Ar_Shop.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Homepage.css" />
+</head>
+<h1>Details</h1>
+
+<div>
+    <h4>Product: @Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" style="color:white">Price:</dt>
+        <dd class="col-sm-10" style="color:white">@Html.DisplayFor(model => model.Price)</dd>
+
+        <dt class="col-sm-2" style="color:white">Discount:</dt>
+        <dd class="col-sm-10 style=" color:white"">@Html.DisplayFor(model => model.Discount)</dd>
+
+        <dt class="col-sm-2" style="color:white">Quantity:</dt>
+        <dd class="col-sm-10" style="color:white">@Html.DisplayFor(model => model.Quantity)</dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Pictures:</h4>
+    <div class="row">
+        @foreach (var picture in Model.Pictures)
+        {
+            <div class="col-sm-4">
+                <img src="@picture.Url" alt="Product Picture" width="200" height="200" />
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <h4>Reviews:</h4>
+    @foreach (var review in Model.Reviews)
+    {
+        <p>@review.Content</p>
+    }
+
+    <h4>Add a Review:</h4>
+    <form method="post" asp-controller="Products" asp-action="AddReview">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <textarea name="reviewContent" rows="2" cols="30" placeholder="Write your review"></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+
+<p>
+    <a asp-action="Edit" asp-controller="Products" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="AllProducts" asp-controller="Products">Back to List</a>
+</p>

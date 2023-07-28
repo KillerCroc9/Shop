@@ -1,0 +1,62 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url('../image/windows-11-stock-black-abstract-black-background-amoled-3840x2400-8971.jpg');
+    background-size: cover; /* Adjust the image size to cover the entire background */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+}
+/* Set the text color for specific elements if needed */
+h1, h2, h3, h4, h5, h6 {
+    color: white; /* Set heading text color to white */
+}
+
+p {
+    color: white; /* Set paragraph text color to white */
+}
+/* Set the button text color to a color other than blue */
+
+/* Homepage.css */
+.table {
+    font-size: 14px;
+}
+
+    .table th {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px;
+    }
+
+    .table td, .table th {
+        text-align: center;
+        vertical-align: middle;
+        color: WHITE; /* Set the text color to black */
+    }
+
+    .table img {
+        display: block;
+        margin: 0 auto;
+    }
+
+dl.row dt,
+dl.row dd {
+    color: white !important;
+}

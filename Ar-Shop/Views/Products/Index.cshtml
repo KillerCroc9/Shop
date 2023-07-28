@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Ar_Shop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Homepage.css" />
+</head>
+
+<h1>Index</h1>
+
+
+<form asp-action="Search" method="get" class="form-inline mb-4" >
+    <div class="form-group">
+        <label for="searchQuery" class="sr-only">Search</label>
+        <input type="text" id="searchQuery" name="searchQuery" class="form-control mr-sm-2" placeholder="Search Products">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                Pictures
+            </th>
+            <th>
+                Reviews
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @if (item.Pictures.Count > 0)
+                    {
+                        @for (int i = 0; i < Math.Min(3, item.Pictures.Count); i++)
+                        {
+                            <img src="@item.Pictures[i].Url" alt="Product Picture" width="100" height="100" />
+                        }
+                        @if (item.Pictures.Count > 3)
+                        {
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">View all (@item.Pictures.Count) images</a>
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var review in item.Reviews)
+                    {
+                        <p>@review.Content</p>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

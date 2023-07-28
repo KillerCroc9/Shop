@@ -1,0 +1,34 @@
+﻿@model List<Ar_Shop.Models.Product>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h1>Search Results for "@ViewBag.SearchQuery"</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No products found.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="@product.Pictures.FirstOrDefault()?.Url" alt="Product Image">
+                    <div class="card-body">
+                        <h4 class="card-title">@product.Name</h4>
+                        <p class="card-text">Price: $@product.Price</p>
+                        <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to All Products</a>
+</div>
